@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Ekdum beautiful, bright romantic gradient background */
             background: linear-gradient(135deg, #ffeef2 0%, #ffd3dc 50%, #fbc2eb 100%); 
             color: #333;
             margin: 0;
@@ -48,7 +47,6 @@
             transform: scale(1.05);
         }
 
-        /* 3D and high-quality hearts falling */
         .heart-fall {
             position: absolute;
             font-size: 24px;
@@ -66,7 +64,6 @@
         }
 
         .container {
-            /* Pure luxury look box */
             background: rgba(255, 255, 255, 0.92);
             padding: 35px 25px;
             border-radius: 30px;
@@ -81,16 +78,15 @@
             display: none; 
         }
 
-        /* Bold & Clear Love Letter Box */
         .love-letter {
-            font-size: 18px; /* Bada aur clear font size */
+            font-size: 18px; 
             line-height: 1.8;
             color: #2d3436;
             margin-bottom: 25px;
             min-height: 260px; 
             text-align: left;
             white-space: pre-line;
-            font-weight: 700; /* Ekdum BOLD text jo premium lage */
+            font-weight: 700; 
             padding: 0 10px;
             text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.05);
         }
@@ -110,8 +106,8 @@
         }
 
         button.action-btn {
-            padding: 14px 35px;
-            font-size: 17px;
+            padding: 14px 25px;
+            font-size: 15px;
             font-weight: bold;
             border: none;
             border-radius: 50px;
@@ -123,19 +119,19 @@
         #yesBtn {
             background: linear-gradient(45deg, #ff4757, #ff6b81);
             color: white;
-            left: 25px;
+            left: 10px;
             box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
         }
 
         #yesBtn:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
             box-shadow: 0 6px 25px rgba(255, 71, 87, 0.6);
         }
 
         #noBtn {
             background-color: #747d8c;
             color: white;
-            right: 25px;
+            right: 10px;
             z-index: 999;
             box-shadow: 0 6px 15px rgba(116, 125, 140, 0.3);
         }
@@ -158,7 +154,7 @@
     <button class="start-btn" onclick="startEverything()">Open Your Note... 🎵❤️</button>
 </div>
 
-<!-- Chhupa hua YouTube Player naye link ke sath -->
+<!-- Chhupa hua YouTube Player -->
 <div id="yt-player"></div>
 
 <div class="container" id="main-container">
@@ -172,7 +168,8 @@
 </div>
 
 <script>
-const textToType = "Akriti, Bahot khas ho tum,  \n\nLafzo me batana mumkin nhii mere dil ke kitne pass ho tum, \n\nApna milna ittefaq he ya luch aur, me nhi janta par ab mera ek hasin khwab ho tum, \n\nSach kahu to chand ho tum.\\ Tumhe paa lena mtlb, chand ko chhu lena in lafzo ke ehsaas bahot khas hai kyuki sath ho tum i love you bauaa \n\n
+// Tumhaara likha hua sacha text - Fixed!
+const textToType = "Akriti, Bahot khas ho tum, \n\nLafzo me batana mumkin nhii mere dil ke kitne pass ho tum. \n\nApna milna ittefaq he ya kuch aur, me nhi janta par ab mera ek hasin khwab ho tum. \n\nSach kahu to chand ho tum. Tumhe paa lena mtlb, chand ko chhu lena... in lafzo ke ehsaas bahot khas hai kyuki sath ho tum.\n\nI love you bauaa ❤️";
 
 let index = 0;
 let player;
@@ -181,7 +178,7 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('yt-player', {
         height: '1',
         width: '1',
-        videoId: 'tDBUEpcQ4hY', // Nayi video ID fit kar di hai
+        videoId: 'tDBUEpcQ4hY', 
         playerVars: {
             'autoplay': 0,
             'controls': 0,
@@ -200,7 +197,7 @@ function startEverything() {
     document.getElementById("main-container").style.display = "block";
 
     typeEffect();
-    setInterval(createHeart, 200); // Thoda tezi se hearts girenge jo colorful background par mast lagenge
+    setInterval(createHeart, 200); 
 }
 
 function typeEffect() {
@@ -211,18 +208,16 @@ function typeEffect() {
     }
 }
 
-// Beautiful Mix of Pink and Red Hearts
 function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart-fall');
     
-    // Randomly select between red, pink, and dark pink hearts
     const heartTypes = ['❤️', '💖', '💝', '💕'];
     heart.innerHTML = heartTypes[Math.floor(Math.random() * heartTypes.length)];
     
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-    heart.style.fontSize = Math.random() * 15 + 15 + "px"; // Big hearts
+    heart.style.fontSize = Math.random() * 15 + 15 + "px"; 
     
     document.body.appendChild(heart);
     setTimeout(() => { heart.remove(); }, 5000);
