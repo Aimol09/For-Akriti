@@ -8,54 +8,91 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            background-color: #fff5f5;
+            background-color: #ffeef2;
             color: #333;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
-            align-content: center;
+            align-items: center;
             height: 100vh;
             flex-direction: column;
             overflow: hidden;
+            position: relative;
         }
+
+        /* Falling Hearts Animation */
+        .heart-fall {
+            position: absolute;
+            color: #ff7675;
+            font-size: 20px;
+            animation: fall linear infinite;
+            top: -20px;
+            z-index: 1;
+            user-select: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) translateX(20px) rotate(360deg);
+            }
+        }
+
         .container {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(214, 48, 49, 0.1);
             max-width: 400px;
             margin: auto;
+            z-index: 10;
+            border: 2px solid #ffb3c1;
         }
+
         h2 {
             color: #d63031;
-            font-size: 24px;
-            margin-bottom: 30px;
+            font-size: 26px;
+            margin-bottom: 35px;
+            line-height: 1.4;
         }
+
         .btn-container {
             position: relative;
-            height: 100px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
         button {
-            padding: 12px 30px;
+            padding: 14px 35px;
             font-size: 18px;
             font-weight: bold;
             border: none;
-            border-radius: 10px;
+            border-radius: 50px;
             cursor: pointer;
             transition: all 0.2s ease;
-        }
-        #yesBtn {
-            background-color: #2ecc71;
-            color: white;
-            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
-        }
-        #noBtn {
-            background-color: #e74c3c;
-            color: white;
             position: absolute;
-            left: 220px;
-            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+        }
+
+        #yesBtn {
+            background-color: #ff4757;
+            color: white;
+            left: 40px;
+            box-shadow: 0 6px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #ff6b81;
+        }
+
+        #noBtn {
+            background-color: #747d8c;
+            color: white;
+            right: 40px;
+            box-shadow: 0 6px 15px rgba(116, 125, 140, 0.4);
+            z-index: 999;
         }
     </style>
 </head>
@@ -70,23 +107,39 @@
 </div>
 
 <script>
+// Background mein dil girane ka function
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart-fall');
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+    heart.style.opacity = Math.random();
+    
+    document.body.appendChild(heart);
+    
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+setInterval(createHeart, 300);
+
+// No button ko bhagane ka advanced code
 function moveButton() {
-    var btn = document.getElementById('noBtn');
-    // Button ko screen ke andar hi rakhne ke liye settings
-    var x = Math.random() * (window.innerWidth - btn.offsetWidth - 40);
-    var y = Math.random() * (window.innerHeight - btn.offsetHeight - 40);
+    const btn = document.getElementById('noBtn');
+    // Screen size ke hisab se safe limits
+    const x = Math.random() * (window.innerWidth - btn.offsetWidth - 50);
+    const y = Math.random() * (window.innerHeight - btn.offsetHeight - 50);
     
-    // Agar coordinates container ke andar aa rahe hain toh thoda shift kar dena
-    if(x < (window.innerWidth/2 + 150) && x > (window.innerWidth/2 - 150)) {
-        x += 150;
-    }
-    
+    btn.style.position = 'fixed';
     btn.style.left = x + 'px';
     btn.style.top = y + 'px';
 }
 
+// Yes click hone par dhasu alert
 function confessLove() {
-    alert('I love you too, my favorite person! 🧿🫂 Chalo ab chupchaap khana khao!');
+    alert('I love you too, my favorite person! 🧿🫂\n\nChalo ab smart bache ki tarah jaldi se khana khao, phir padhte rehna! ❤️');
 }
 </script>
 
