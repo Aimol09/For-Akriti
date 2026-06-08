@@ -7,8 +7,9 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b0104; 
-            color: #fff;
+            /* Ekdum beautiful, bright romantic gradient background */
+            background: linear-gradient(135deg, #ffeef2 0%, #ffd3dc 50%, #fbc2eb 100%); 
+            color: #333;
             margin: 0;
             padding: 0;
             display: flex;
@@ -23,7 +24,7 @@
         #start-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #0b0104;
+            background: linear-gradient(135deg, #ffeef2, #ffd3dc);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,67 +32,75 @@
         }
 
         .start-btn {
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 16px 35px;
+            font-size: 20px;
             font-weight: bold;
             background: linear-gradient(45deg, #ff4757, #ff6b81);
             color: white;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.4);
+            box-shadow: 0 10px 25px rgba(255, 71, 87, 0.4);
+            transition: transform 0.2s;
         }
 
+        .start-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* 3D and high-quality hearts falling */
         .heart-fall {
             position: absolute;
-            color: #ff4757;
-            font-size: 20px;
+            font-size: 24px;
             animation: fall linear infinite;
-            top: -20px;
+            top: -30px;
             z-index: 1;
             user-select: none;
-            opacity: 0.4;
+            filter: drop-shadow(0px 3px 5px rgba(0,0,0,0.1));
         }
 
         @keyframes fall {
             to {
-                transform: translateY(105vh) translateX(30px) rotate(360deg);
+                transform: translateY(105vh) translateX(40px) rotate(360deg);
             }
         }
 
         .container {
-            background: rgba(20, 5, 10, 0.88);
+            /* Pure luxury look box */
+            background: rgba(255, 255, 255, 0.92);
             padding: 35px 25px;
-            border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(255, 71, 87, 0.2);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(214, 48, 49, 0.15);
             max-width: 460px;
             width: 88%;
             margin: auto;
             z-index: 10;
-            border: 1px solid rgba(255, 71, 87, 0.35);
+            border: 2px solid #ffb3c1;
             text-align: center;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
             display: none; 
         }
 
+        /* Bold & Clear Love Letter Box */
         .love-letter {
-            font-size: 16px;
+            font-size: 18px; /* Bada aur clear font size */
             line-height: 1.8;
-            color: #ffe3e8;
+            color: #2d3436;
             margin-bottom: 25px;
-            min-height: 240px; 
+            min-height: 260px; 
             text-align: left;
             white-space: pre-line;
-            font-weight: 400;
+            font-weight: 700; /* Ekdum BOLD text jo premium lage */
             padding: 0 10px;
+            text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.05);
         }
 
         h2 {
-            color: #ff4757;
-            font-size: 24px;
+            color: #d63031;
+            font-size: 26px;
             margin-top: 0;
             margin-bottom: 15px;
-            text-shadow: 0 0 15px rgba(255, 71, 87, 0.6);
+            font-weight: 800;
         }
 
         .btn-container {
@@ -101,8 +110,8 @@
         }
 
         button.action-btn {
-            padding: 12px 35px;
-            font-size: 16px;
+            padding: 14px 35px;
+            font-size: 17px;
             font-weight: bold;
             border: none;
             border-radius: 50px;
@@ -118,11 +127,17 @@
             box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
         }
 
+        #yesBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(255, 71, 87, 0.6);
+        }
+
         #noBtn {
-            background-color: #2f3542;
-            color: #ced6e0;
+            background-color: #747d8c;
+            color: white;
             right: 25px;
             z-index: 999;
+            box-shadow: 0 6px 15px rgba(116, 125, 140, 0.3);
         }
 
         #yt-player {
@@ -143,7 +158,7 @@
     <button class="start-btn" onclick="startEverything()">Open Your Note... 🎵❤️</button>
 </div>
 
-<!-- Chhupa hua YouTube Player tumhaari Shorts ID ke sath -->
+<!-- Chhupa hua YouTube Player naye link ke sath -->
 <div id="yt-player"></div>
 
 <div class="container" id="main-container">
@@ -166,12 +181,12 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('yt-player', {
         height: '1',
         width: '1',
-        videoId: 'Pnmywg_H9bA', // Nayi shorts wali ID fit kar di hai
+        videoId: 'tDBUEpcQ4hY', // Nayi video ID fit kar di hai
         playerVars: {
             'autoplay': 0,
             'controls': 0,
             'loop': 1,
-            'playlist': 'Pnmywg_H9bA'
+            'playlist': 'tDBUEpcQ4hY'
         }
     });
 }
@@ -185,7 +200,7 @@ function startEverything() {
     document.getElementById("main-container").style.display = "block";
 
     typeEffect();
-    setInterval(createHeart, 250);
+    setInterval(createHeart, 200); // Thoda tezi se hearts girenge jo colorful background par mast lagenge
 }
 
 function typeEffect() {
@@ -196,13 +211,18 @@ function typeEffect() {
     }
 }
 
+// Beautiful Mix of Pink and Red Hearts
 function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart-fall');
-    heart.innerHTML = '❤️';
+    
+    // Randomly select between red, pink, and dark pink hearts
+    const heartTypes = ['❤️', '💖', '💝', '💕'];
+    heart.innerHTML = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+    
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-    heart.style.fontSize = Math.random() * 15 + 12 + "px";
+    heart.style.fontSize = Math.random() * 15 + 15 + "px"; // Big hearts
     
     document.body.appendChild(heart);
     setTimeout(() => { heart.remove(); }, 5000);
