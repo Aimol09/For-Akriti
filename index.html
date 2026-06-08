@@ -134,10 +134,9 @@
     <button class="start-btn" onclick="startEverything()">Open Your Note... 🎵❤️</button>
 </div>
 
-<!-- Audio Player (Hindi Song Added) -->
-<audio id="bg-music" loop>
-    <!-- Tum Se Hi - Acoustic/Flute Romantic Version -->
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+<!-- Audio Player (100% Working Hindi Romantic Background Tune) -->
+<audio id="bg-music" loop preload="auto">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container" id="main-container">
@@ -151,14 +150,24 @@
 </div>
 
 <script>
-const textToType = "Akriti, sach batau na... tumhara woh handwritten note dekh kar mera dil ekdum khush ho gaya. \n\nMujhe badi-babi baatein likhna toh nahi aata, par jab tumne likha na ki main perfect nahi hoon fir bhi tumhare liye sahi hoon, toh mera saara darr hi khatam ho gaya.\n\nTum din bhar hospital mein kitna bhi thak jao, bas ek baar muskura kar baat kar leti ho toh mera din ban jata hai. Mann karta hai bas abhi tumhare paas aaoon aur tumhe ek dum tight wali jhappi de doon, jahan tum aakhon band karke apni saari thakan bhool jao.\n\nTum jaisi bhi ho, mere liye sabse best ho. Toh batao, humesha mere sath rahongi na?";
+const textToType = "Akriti, sach batau na... tumhara woh handwritten note dekh kar mera dil ekdum khush ho gaya. \n\nMujhe badi-badi baatein likhna toh nahi aata, par jab tumne likha na ki main perfect nahi hoon fir bhi tumhare liye sahi hoon, toh mera saara darr hi khatam ho gaya.\n\nTum din bhar hospital mein kitna bhi thak jao, bas ek baar muskura kar baat kar leti ho toh mera din ban jata hai. Mann karta hai bas abhi tumhare paas aaoon aur tumhe ek dum tight wali jhappi de doon, jahan tum aakhon band karke apni saari thakan bhool jao.\n\nTum jaisi bhi ho, mere liye sabse best ho. Toh batao, humesha mere sath rahongi na?";
 
 let index = 0;
 
 function startEverything() {
     // 1. Start Music
     const music = document.getElementById("bg-music");
-    music.play().catch(error => console.log("Music playback failed:", error));
+    music.muted = false; // Audio ko force unmute karne ke liye
+    
+    let playPromise = music.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            console.log("Music started successfully!");
+        }).catch(error => {
+            console.log("Playback failed, checking again:", error);
+        });
+    }
 
     // 2. Hide Start Screen & Show Letter
     document.getElementById("start-screen").style.display = "none";
