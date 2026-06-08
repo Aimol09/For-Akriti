@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Favorite Person ❤️</title>
+    <title>Sirf Tumhaare Liye... ❤️</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            background-color: #ffeef2;
-            color: #333;
+            background-color: #0b0104; /* Dark Soulful Theme */
+            color: #fff;
             margin: 0;
             padding: 0;
             display: flex;
@@ -21,77 +20,92 @@
             position: relative;
         }
 
-        /* Falling Hearts Animation */
+        /* Soft Floating Hearts */
         .heart-fall {
             position: absolute;
-            color: #ff7675;
+            color: #ff4757;
             font-size: 20px;
             animation: fall linear infinite;
             top: -20px;
             z-index: 1;
             user-select: none;
+            opacity: 0.4;
         }
 
         @keyframes fall {
             to {
-                transform: translateY(105vh) translateX(20px) rotate(360deg);
+                transform: translateY(105vh) translateX(30px) rotate(360deg);
             }
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px 30px;
+            background: rgba(20, 5, 10, 0.88);
+            padding: 35px 25px;
             border-radius: 25px;
-            box-shadow: 0 15px 30px rgba(214, 48, 49, 0.1);
-            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(255, 71, 87, 0.2);
+            max-width: 460px;
+            width: 88%;
             margin: auto;
             z-index: 10;
-            border: 2px solid #ffb3c1;
+            border: 1px solid rgba(255, 71, 87, 0.35);
+            text-align: center;
+            backdrop-filter: blur(15px);
+        }
+
+        /* Pure Love Letter Box */
+        .love-letter {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #ffe3e8;
+            margin-bottom: 25px;
+            min-height: 260px; 
+            text-align: left;
+            white-space: pre-line;
+            font-weight: 400;
+            padding: 0 10px;
         }
 
         h2 {
-            color: #d63031;
-            font-size: 26px;
-            margin-bottom: 35px;
-            line-height: 1.4;
+            color: #ff4757;
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(255, 71, 87, 0.6);
         }
 
         .btn-container {
             position: relative;
-            height: 80px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 70px;
+            margin-top: 15px;
         }
 
         button {
-            padding: 14px 35px;
-            font-size: 18px;
+            padding: 12px 35px;
+            font-size: 16px;
             font-weight: bold;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             position: absolute;
         }
 
         #yesBtn {
-            background-color: #ff4757;
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
             color: white;
-            left: 40px;
-            box-shadow: 0 6px 15px rgba(255, 71, 87, 0.4);
+            left: 25px;
+            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
         }
 
         #yesBtn:hover {
             transform: scale(1.1);
-            background-color: #ff6b81;
+            box-shadow: 0 6px 25px rgba(255, 71, 87, 0.6);
         }
 
         #noBtn {
-            background-color: #747d8c;
-            color: white;
-            right: 40px;
-            box-shadow: 0 6px 15px rgba(116, 125, 140, 0.4);
+            background-color: #2f3542;
+            color: #ced6e0;
+            right: 25px;
             z-index: 999;
         }
     </style>
@@ -99,36 +113,50 @@
 <body>
 
 <div class="container">
-    <h2>Akriti, kya aap humesha mere sath rahongi? ❤️</h2>
+    <h2>Suno Akriti... ❤️</h2>
+    
+    <!-- Heart-melting text typewriter effect -->
+    <div class="love-letter" id="typewriter"></div>
+
     <div class="btn-container">
-        <button id="yesBtn" onclick="confessLove()">Yes</button>
+        <button id="yesBtn" onclick="confessLove()">Aa jao, Hug Kar Lo! 🫂❤️</button>
         <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
     </div>
 </div>
 
 <script>
-// Background mein dil girane ka function
+// Deep Romantic & Pure Love Text
+const textToType = "Pata hai Akriti, jab tum thak kar aati ho na, toh mera mann karta hai dunya ki saari baatein rok kar bas tumhe apne gale se laga loon.\n\nEk aisi jhappi... jahan tum apni aakhein band karo, aur hospital ka saara stress, saari thakan ek second mein gayab ho jaye. Jahan tumhe dunya ka sabse surakshit aur sacha sukoon mile.\n\nMain shayad shabdon mein bohot accha nahi hoon, par mera yeh desi dil har dhadkan ke sath bas tumhara khayal rakhta hai. Main tumse poori rooh se pyaar karta hoon, tum jaisi bhi ho, mere liye bilkul perfect ho.\n\nAb zyaada socho mat, bas ek pyaari si smile do aur batao, kya humesha ke liye meri is jhappi mein rahongi?";
+
+let index = 0;
+function typeEffect() {
+    if (index < textToType.length) {
+        document.getElementById("typewriter").innerHTML += textToType.charAt(index);
+        index++;
+        setTimeout(typeEffect, 45); // Smooth typing speed
+    }
+}
+
+// Start typewriter when page loads
+window.onload = typeEffect;
+
+// Background Falling Hearts
 function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart-fall');
     heart.innerHTML = '❤️';
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-    heart.style.fontSize = Math.random() * 20 + 10 + "px";
-    heart.style.opacity = Math.random();
+    heart.style.fontSize = Math.random() * 15 + 12 + "px";
     
     document.body.appendChild(heart);
-    
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
+    setTimeout(() => { heart.remove(); }, 5000);
 }
-setInterval(createHeart, 300);
+setInterval(createHeart, 250);
 
-// No button ko bhagane ka advanced code
+// Ninja No Button
 function moveButton() {
     const btn = document.getElementById('noBtn');
-    // Screen size ke hisab se safe limits
     const x = Math.random() * (window.innerWidth - btn.offsetWidth - 50);
     const y = Math.random() * (window.innerHeight - btn.offsetHeight - 50);
     
@@ -137,9 +165,9 @@ function moveButton() {
     btn.style.top = y + 'px';
 }
 
-// Yes click hone par dhasu alert
+// Final Hug Alert Popup
 function confessLove() {
-    alert('I love you too, my favorite person! 🧿🫂\n\nChalo ab smart bache ki tarah jaldi se khana khao, phir padhte rehna! ❤️');
+    alert('Aww... virtual waali sabse tight jhappi aur dher saara dulaar meri doctor saab ko! 🫂🧿❤️\n\nAb jaldi se muskurao, aur jaakar aaram se so jao. Main humesha tumhare sath hoon.');
 }
 </script>
 
