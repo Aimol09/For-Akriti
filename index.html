@@ -135,27 +135,20 @@
             z-index: 999;
             box-shadow: 0 6px 15px rgba(116, 125, 140, 0.3);
         }
-
-        #yt-player {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
-        }
     </style>
 </head>
 <body>
 
-<!-- YouTube API Script -->
-<script src="https://www.youtube.com/iframe_api"></script>
+<!-- Standard HTML Audio Player (GitHub se direct chalega) -->
+<audio id="myAudio" loop>
+    <source src="song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
 <!-- Start Screen -->
 <div id="start-screen">
     <button class="start-btn" onclick="startEverything()">Open Your Note... 🎵❤️</button>
 </div>
-
-<!-- Chhupa hua YouTube Player -->
-<div id="yt-player"></div>
 
 <div class="container" id="main-container">
     <h2>Suno Akriti... ❤️</h2>
@@ -168,30 +161,16 @@
 </div>
 
 <script>
-// Tumhaara likha hua sacha text - Fixed!
 const textToType = "Akriti, Bahot khas ho tum, \n\nLafzo me batana mumkin nhii mere dil ke kitne pass ho tum. \n\nApna milna ittefaq he ya kuch aur, me nhi janta par ab mera ek hasin khwab ho tum. \n\nSach kahu to chand ho tum. Tumhe paa lena mtlb, chand ko chhu lena... in lafzo ke ehsaas bahot khas hai kyuki sath ho tum.\n\nI love you bauaa ❤️";
 
 let index = 0;
-let player;
-
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('yt-player', {
-        height: '1',
-        width: '1',
-        videoId: 'tDBUEpcQ4hY', 
-        playerVars: {
-            'autoplay': 0,
-            'controls': 0,
-            'loop': 1,
-            'playlist': 'tDBUEpcQ4hY'
-        }
-    });
-}
 
 function startEverything() {
-    if (player && player.playVideo) {
-        player.playVideo();
-    }
+    // Direct browser audio play karega bina kisi external error ke
+    const audio = document.getElementById("myAudio");
+    audio.play().catch(function(error) {
+        console.log("Audio play handle error:", error);
+    });
 
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("main-container").style.display = "block";
